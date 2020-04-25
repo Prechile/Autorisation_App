@@ -103,28 +103,11 @@ class Autorisation : AppCompatActivity() {
                 var respons = metier!!.envoie(person, URL)
 
 
-                if(respons==null){
+                if(respons!=null){
 
                     val code = respons
                     dbHandler!!.addCode(code)
                     dbHandler!!.insertUser(person)
-
-//                    val dialogBuilder = AlertDialog.Builder(this@Autorisation)
-//                        //dialogBuilder.setMessage("")
-//                        .setCancelable(false)
-//                        .setPositiveButton(
-//                            "OK",
-//                            DialogInterface.OnClickListener { dialog, id ->
-//                                prgDialog.dismiss()
-//                                val intent = Intent(this, Code::class.java)
-//                                startActivity(intent)
-//                                finish()
-//                            })
-//
-//                    val alert = dialogBuilder.create()
-//                    alert.setTitle("Succes")
-//                    alert.setMessage("Demande accepté, appuyé sur OK pour avoir votre code")
-//                    alert.show()
 
 
                     val builder = AlertDialog.Builder(this)
@@ -147,7 +130,7 @@ class Autorisation : AppCompatActivity() {
                 }else{
                     pb.visibility=View.GONE
                     Toast.makeText(applicationContext,
-                "erreur, veuillez réessayer dans 7 jours" , Toast.LENGTH_LONG).show()
+                "erreur, veuillez réessayer" , Toast.LENGTH_LONG).show()
 
                     val builder = AlertDialog.Builder(this)
                     val inflater = layoutInflater
@@ -156,9 +139,7 @@ class Autorisation : AppCompatActivity() {
                         "OK",
                         DialogInterface.OnClickListener { dialog, id ->
                             pb.visibility=View.GONE
-                            val intent = Intent(this, Code::class.java)
-                            startActivity(intent)
-                            finish()
+
                         })
                     builder.setMessage("Désolé, vous pouvez plus bénéficiez d'un passe pour cette semaine, veuillez réessayer dans 7 jours")
                     builder.setView(dialogLayout1)
