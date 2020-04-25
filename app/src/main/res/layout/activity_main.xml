@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rela"
+    tools:context=".MainActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lin0"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/btn_con1"
+                android:text="Demande de passe"
+                android:textColor="#ffff"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_below="@id/btn1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textColor="#ffff"
+                android:text="votre passe"
+                android:textStyle="bold"
+                android:background="@drawable/btn_con"
+                android:layout_marginBottom="10sp"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="right"
+        android:layout_below="@+id/lin0"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="Poweres by proconsulting"
+            android:textColor="#C2C2C2"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>
