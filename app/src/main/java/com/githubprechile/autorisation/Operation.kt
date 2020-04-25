@@ -22,12 +22,6 @@ class Operation : AppCompatActivity() {
         val qrc = findViewById<ImageView>(R.id.qrcodeImageView1)
         val okbtn = findViewById<Button>(R.id.OK)
 
-        okbtn.setOnClickListener{
-            val tent = Intent(this,MainActivity::class.java)
-            startActivity(tent)
-            finish()
-        }
-
 
 //            // convert from byte array to bitmap
             fun getImage(image: ByteArray): Bitmap {
@@ -36,7 +30,19 @@ class Operation : AppCompatActivity() {
 
         //init db
         dbHandler = DatabaseHandler(this)
-        qrc.setImageBitmap(getImage(dbHandler!!.getAllImage()!!))
+        try {
+            qrc.setImageBitmap(getImage(dbHandler!!.getAllImage()!!))
+
+            okbtn.setOnClickListener{
+                val tent = Intent(this,MainActivity::class.java)
+                startActivity(tent)
+                finish()
+            }
+
+        }catch (e:Exception){
+
+        }
+
 
     }
 
