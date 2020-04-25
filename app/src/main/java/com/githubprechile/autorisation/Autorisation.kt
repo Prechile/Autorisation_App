@@ -1,13 +1,15 @@
 package com.githubprechile.autorisation
 
-import android.Manifest
-import android.app.ProgressDialog
+import android.Manifest.permission.READ_PHONE_STATE
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
+import android.provider.Settings
+import android.provider.Settings.Secure
 import android.telephony.TelephonyManager
 import android.text.TextUtils
 import android.view.View
@@ -18,9 +20,10 @@ import androidx.core.app.ActivityCompat
 import com.githubprechile.autorisation.Database.DatabaseHandler
 import com.githubprechile.autorisation.Metier.Metier
 import com.githubprechile.autorisation.Retrofit.URL
-import com.githubprechile.autorisation.Retrofit.UnsafeOK_HttpClient
 import com.githubprechile.autorisation.model.ApiAutorisation
-import com.google.android.material.snackbar.Snackbar
+import android.provider.Settings.System;
+import com.githubprechile.autorisation.Retrofit.Interface
+import com.githubprechile.autorisation.Retrofit.UnsafeOK_HttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,10 +35,10 @@ class Autorisation : AppCompatActivity() {
 
     var dbHandler: DatabaseHandler? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_autorisation)
-
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
@@ -51,6 +54,7 @@ class Autorisation : AppCompatActivity() {
         val pb = findViewById<ProgressBar>(R.id.pgbar)
         dbHandler = DatabaseHandler(this)
         pb.visibility=View.GONE
+
 
         val display1 = dbHandler!!.nom()
         val display2 = dbHandler!!.prenom()
@@ -80,9 +84,12 @@ class Autorisation : AppCompatActivity() {
         motif.adapter = adapterMotif
         val metier = Metier()
         var etat:String?
+        val androidID: String =
+            System.getString(this.contentResolver, Secure.ANDROID_ID)
 
-        btn.setOnClickListener{
 
+        btn.setOnClickListener(){
+            pb.visibility=View.VISIBLE
             if(TextUtils.isEmpty(nom.text.toString()) && TextUtils.isEmpty(prenom.text.toString())||
                 TextUtils.isEmpty(adresse.text.toString())||TextUtils.isEmpty(imm.text.toString())
                 ||TextUtils.isEmpty(lieu.text.toString())){
@@ -96,57 +103,94 @@ class Autorisation : AppCompatActivity() {
                     "veuillez renseigner tous mes champs" , Toast.LENGTH_LONG).show()
 
             }else{
-                pb.visibility=View.VISIBLE
-                val person=ApiAutorisation("3590500941322380",nom.text.toString(),lieu.text.toString(),prenom.text.toString(),motif.selectedItem.toString(),
-                                           adresse.text.toString(),adresse2.text.toString(),engin.selectedItem.toString(),imm.text.toString())
-                //metier.envoie(person, URL)
-                var respons = metier!!.envoie(person, URL)
+                pb.visibility = View.VISIBLE
+                //connexion.isClickable=false
+
+                val person=ApiAutorisation(androidID,nom.text.toString(),lieu.text.toString(),prenom.text.toString(),motif.selectedItem.toString(),
+                    adresse.text.toString(),adresse2.text.toString(),engin.selectedItem.toString(),imm.text.toString())
+
+                val retrofit = Retrofit.Builder()
+                    .baseUrl(URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(UnsafeOK_HttpClient.getUnsafeOkHttpClient().build())
+                    .build()
+
+                val service: Interface = retrofit.create(Interface::class.java)
+                val call: Call<String> =service.envoiePersonne(person)
+
+                call.enqueue(object : Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        pb.visibility = View.GONE
+                        response.body()
+
+                        if (response.code()==200) {
+
+                            val code = response.body()
+                            dbHandler!!.addCode(code)
+                            dbHandler!!.insertUser(person)
+
+                            val builder = AlertDialog.Builder(this@Autorisation)
+                            val inflater = layoutInflater
+                            val dialogLayout = inflater.inflate(R.layout.alert_dialog_with_imageview, null)
+                            builder.setPositiveButton(
+                                "OK",
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    pb.visibility=View.GONE
+                                    val home = Intent(applicationContext, Code::class.java)
+                                    startActivity(home)
+                                    finish()
+                                })
+                            builder.setMessage("Demande accepté, appuyé sur OK pour avoir votre code")
+                            builder.setView(dialogLayout)
+                            builder.setCancelable(false)
+                            builder.show()
 
 
-                if(respons!=null){
+                        } else {
+                            Toast.makeText(applicationContext,
+                                "erreur, veuillez réessayer" , Toast.LENGTH_LONG).show()
 
-                    val code = respons
-                    dbHandler!!.addCode(code)
-                    dbHandler!!.insertUser(person)
+                            val builder = AlertDialog.Builder(this@Autorisation)
+                            val inflater = layoutInflater
+                            val dialogLayout1 = inflater.inflate(R.layout.alert_dialog_with_imageviewfalse, null)
+                            builder.setPositiveButton(
+                                "OK",
+                                DialogInterface.OnClickListener { dialog, id ->
+                                    pb.visibility=View.GONE
 
+                                })
+                            builder.setMessage("Désolé, vous pouvez plus bénéficiez d'un passe pour cette semaine, veuillez réessayer dans 7 jours")
+                            builder.setView(dialogLayout1)
+                            builder.setCancelable(false)
+                            builder.show()
+                        }
+                    }
 
-                    val builder = AlertDialog.Builder(this)
-                    val inflater = layoutInflater
-                    val dialogLayout = inflater.inflate(R.layout.alert_dialog_with_imageview, null)
-                    builder.setPositiveButton(
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+
+                        pb.visibility = View.GONE
+                        val dialogBuilder = AlertDialog.Builder(this@Autorisation)
+                            //dialogBuilder.setMessage("")
+                        Toast.makeText(applicationContext,
+                            "erreur de connexion, veuillez réessayer" , Toast.LENGTH_LONG).show()
+
+                        val builder = AlertDialog.Builder(this@Autorisation)
+                        val inflater = layoutInflater
+                        val dialogLayout1 = inflater.inflate(R.layout.alert_dialog_with_imageviewfalse, null)
+                        builder.setPositiveButton(
                             "OK",
                             DialogInterface.OnClickListener { dialog, id ->
                                 pb.visibility=View.GONE
-                                val intent = Intent(this, Code::class.java)
-                                startActivity(intent)
-                                finish()
+
                             })
-                    builder.setMessage("Demande accepté, appuyé sur OK pour avoir votre code")
-                    builder.setView(dialogLayout)
-                    builder.setCancelable(false)
-                    builder.show()
+                        builder.setMessage("erreur de connexion, veuillez réessayer")
+                        builder.setView(dialogLayout1)
+                        builder.setCancelable(false)
+                        builder.show()
 
-
-                }else{
-                    pb.visibility=View.GONE
-                    Toast.makeText(applicationContext,
-                "erreur, veuillez réessayer" , Toast.LENGTH_LONG).show()
-
-                    val builder = AlertDialog.Builder(this)
-                    val inflater = layoutInflater
-                    val dialogLayout1 = inflater.inflate(R.layout.alert_dialog_with_imageviewfalse, null)
-                    builder.setPositiveButton(
-                        "OK",
-                        DialogInterface.OnClickListener { dialog, id ->
-                            pb.visibility=View.GONE
-
-                        })
-                    builder.setMessage("Désolé, vous pouvez plus bénéficiez d'un passe pour cette semaine, veuillez réessayer dans 7 jours")
-                    builder.setView(dialogLayout1)
-                    builder.setCancelable(false)
-                    builder.show()
-                }
-
+                    }
+                });
+            }
 
             }
         }
@@ -154,6 +198,5 @@ class Autorisation : AppCompatActivity() {
 
 
 
-        }
 
 
