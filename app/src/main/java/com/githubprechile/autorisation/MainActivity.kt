@@ -68,6 +68,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(mweb)
             }
 
+            R.id.pass_cfeu -> {
+
+                val cfeu = Intent(this,Autorisation::class.java)
+                startActivity(cfeu)
+            }
+
             R.id.info -> {
 
                 val info = Intent(this,infoApp::class.java)
