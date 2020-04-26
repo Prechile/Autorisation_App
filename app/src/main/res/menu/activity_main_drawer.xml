@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:checked="true"
+            android:title="Acceuil" />
+        <item
+            android:id="@+id/info_corona"
+            android:icon="@drawable/ic_live_help_black_24dp"
+            android:title="Info corona/cas du Togo" />
+
+        <item
+            android:id="@+id/pass_cfeu"
+            android:icon="@drawable/ic_whatshot_black_24dp"
+            android:title="Autorisation couvre feu" />
+        <item
+            android:id="@+id/pass_ville"
+            android:icon="@drawable/ic_airport_shuttle_black_24dp"
+            android:title="Autorisation ville-ville" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Plus">
+            <menu>
+                <item
+                    android:id="@+id/share"
+                    android:icon="@drawable/ic_share_black_24dp"
+                    android:title="partager" />
+                <item
+                    android:id="@+id/info"
+                    android:icon="@drawable/ic_info_black_24dp"
+                    android:title="info application" />
+
+            </menu>
+        </item>
+
+
+    </group>
+
+</menu>

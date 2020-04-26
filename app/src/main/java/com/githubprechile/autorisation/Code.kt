@@ -1,10 +1,12 @@
 package com.githubprechile.autorisation
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +28,16 @@ class Code : AppCompatActivity() {
 
         val qrcodeImageView = findViewById<ImageView>(R.id.qrcodeImageView)
         val txt = findViewById<TextView>(R.id.codeQR)
+        val okbtn = findViewById<Button>(R.id.OK)
+
+
+        okbtn.setOnClickListener{
+            val i = Intent(applicationContext, MainActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(i)
+            this.recreate()
+            finish()
+        }
 
         //init db
         dbHandler = DatabaseHandler(this)
@@ -56,10 +68,10 @@ class Code : AppCompatActivity() {
 //                return BitmapFactory.decodeByteArray(image, 0, image.size)
 //            }
 
-
         qrcodeImageView.setImageBitmap(bitmap)
         dbHandler!!.insertImage(getBytes(bitmap))
     }
+
 
 
     override fun onSupportNavigateUp(): Boolean {

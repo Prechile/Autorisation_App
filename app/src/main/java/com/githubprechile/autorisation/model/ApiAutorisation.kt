@@ -10,6 +10,9 @@ class ApiAutorisation (
     val adresse:String?="",
     val adresse2:String?="",
     val engin:String?="",
-    val immatriculation:String?=""
+    val immatriculation:String?="",
+    val longitude:Double?=0.0,
+    val latitude:Double?=0.0,
+    val numpiece:String?=""
 
 )

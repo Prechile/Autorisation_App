@@ -1,5 +1,6 @@
 package com.githubprechile.autorisation.Metier
 
+import android.widget.ProgressBar
 import com.githubprechile.autorisation.Retrofit.Interface
 import com.githubprechile.autorisation.Retrofit.UnsafeOK_HttpClient
 import com.githubprechile.autorisation.model.ApiAutorisation
@@ -7,6 +8,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import retrofit2.Retrofit.*
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.security.auth.callback.Callback
 
 class Metier {
     fun envoie(

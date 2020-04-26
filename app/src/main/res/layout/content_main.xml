@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    tools:context=".MainActivity">
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lin0"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card"
+            app:cardCornerRadius="6dp"
+            app:cardBackgroundColor="#882C29"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:padding="1dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="cette application à pour but d'aider la population Togolaise dans diverse domaine"
+                    android:textColor="#FFFF"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/collecte"
+                    android:text="- S'informer sur le covid 19 et avoir totes les dernières information liée a la population Togolaise"
+                    android:textColor="#FFFF"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- Demander une autorisation pour un cause urgente après le couvre feu instoré de 20h à 6h"
+                    android:textColor="#FFFF"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- Demander une autorisation de sortie de la ville pour des transaction de bien et de marchandise"
+                    android:textColor="#FFFF"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFF"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFF"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10sp"
+            android:background="@drawable/btn_con1"
+            android:text="Demande de passe"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="#ffff"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_below="@id/btn1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#ffff"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="votre passe"
+            android:textStyle="bold"
+            android:background="@drawable/btn_con"
+            android:layout_marginBottom="10sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -4,139 +4,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Autorisation"
-    android:id="@+id/global">
-
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Autorisation">
 
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical">
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="30dp">
 
-
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center|top"
-                android:text="DEMANDE D'AUTORISATION"
-                android:textColor="#008577"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center|top"
+            android:text="DEMANDE D'AUTORISATION COUVRE FEU"
+            android:textColor="#008577"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+
 
             <LinearLayout
-                android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView1"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_below="@+id/textView1"
+                android:id="@+id/lino">
 
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.gridlayout.widget.GridLayout
+                    app:columnCount="2"
+                    app:columnOrderPreserved="true"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
+                    android:layout_height="match_parent">
 
-                    <EditText
-                        android:id="@+id/nom"
-                        android:layout_width="match_parent"
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Votre nom"
-                        android:imeActionId="6"
-                        android:textColor="#000"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true" />
+                        android:layout_marginBottom="20sp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="2"
+                        android:theme="@style/MyTextInputLayout">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/nom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Votre nom"
+                            android:imeActionId="6"
+                            android:textColor="#000"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true" />
 
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
-
-                    <EditText
-                        android:id="@+id/prenom"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Vos prénoms"
-                        android:imeActionId="6"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="#000" />
+                        android:layout_marginBottom="20sp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:theme="@style/MyTextInputLayout">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/prenom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Vos prénoms"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#000" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/adresse"
-                        android:layout_width="match_parent"
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Adresse"
-                        android:imeActionId="6"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="#000" />
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:layout_marginBottom="20sp"
+                        android:theme="@style/MyTextInputLayout">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/numpiece"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="numero pièce d'identité"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#000" />
 
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
-
-                    <EditText
-                        android:id="@+id/adresse2"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="destination"
-                        android:imeActionId="6"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="#000" />
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:layout_marginBottom="20sp"
+                        android:theme="@style/MyTextInputLayout">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/adresse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Adresse"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#000" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20sp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:theme="@style/MyTextInputLayout">
+
+                        <EditText
+                            android:id="@+id/immatriculation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Immatriculation"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#000" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20sp"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:theme="@style/MyTextInputLayout">
 
                     <LinearLayout
                         android:id="@+id/linearLayoutPapier"
@@ -166,34 +199,38 @@
                             android:textColorHint="@color/colorPrimaryDark"
                             android:textSize="22sp" />
                     </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
-
-                    <EditText
-                        android:id="@+id/immatriculation"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Immatriculation"
-                        android:imeActionId="6"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="#000" />
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:layout_marginBottom="20sp"
+                        android:theme="@style/MyTextInputLayout">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/adresse2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="destination"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#000" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:layout_marginBottom="20sp"
+                        android:theme="@style/MyTextInputLayout">
 
                     <LinearLayout
                         android:id="@+id/linearLayout"
@@ -223,61 +260,102 @@
                             android:textColorHint="@color/colorPrimaryDark"
                             android:textSize="22sp" />
                     </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20sp"
-                    android:theme="@style/MyTextInputLayout">
-
-                    <EditText
-                        android:id="@+id/nomLieu"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="nom clinique/hopital/pharmacie"
-                        android:imeActionId="6"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="#000" />
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:layout_marginBottom="20sp"
+                        android:theme="@style/MyTextInputLayout">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/nomLieu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="nom clinique/hopital/pharmacie"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="#000" />
 
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/linearLayout1"
-                    android:layout_marginTop="10sp">
-
-
-                    <ProgressBar
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:id="@+id/pgbar"/>
-
-                    <Button
-                        android:id="@+id/btnValider"
-                        android:layout_width="200sp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/pgbar"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="10sp"
-                        android:background="@drawable/btn_con1"
-                        android:text="VALIDER"
-                        android:textColor="#ffff"
-                        android:textStyle="bold" />
+                        app:layout_columnWeight="1"
+                        app:layout_rowWeight="1"
+                        android:layout_marginBottom="20sp"
+                        android:theme="@style/MyTextInputLayout">
 
+                        <LinearLayout
+                            android:id="@+id/linearLayout0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-                </RelativeLayout>
+                            <TextView
+                                android:id="@+id/textView111"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="sexe"
+                                android:textAllCaps="true"
+                                android:textColor="#008577"
+                                android:textSize="15sp" />
 
+                            <Spinner
+                                android:id="@+id/sexe"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/input_bg"
+                                android:paddingLeft="15dp"
+                                android:paddingRight="15dp"
+                                android:spinnerMode="dialog"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textColorHint="@color/colorPrimaryDark"
+                                android:textSize="22sp" />
+                        </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.gridlayout.widget.GridLayout>
 
             </LinearLayout>
-        </RelativeLayout>
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lino"
+                android:layout_marginTop="10sp">
+
+
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/pgbar"/>
+
+                <Button
+                    android:id="@+id/btnValider"
+                    android:layout_width="200sp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pgbar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10sp"
+                    android:background="@drawable/btn_con1"
+                    android:text="VALIDER"
+                    android:textColor="#ffff"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
     </ScrollView>
 
 

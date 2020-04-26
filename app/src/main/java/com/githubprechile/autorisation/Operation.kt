@@ -3,10 +3,12 @@ package com.githubprechile.autorisation
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.githubprechile.autorisation.Database.DatabaseHandler
 
 class Operation : AppCompatActivity() {
@@ -20,7 +22,7 @@ class Operation : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         val qrc = findViewById<ImageView>(R.id.qrcodeImageView1)
-        val okbtn = findViewById<Button>(R.id.OK)
+        val txt = findViewById<TextView>(R.id.codeQR)
 
 
 //            // convert from byte array to bitmap
@@ -32,17 +34,11 @@ class Operation : AppCompatActivity() {
         dbHandler = DatabaseHandler(this)
         try {
             qrc.setImageBitmap(getImage(dbHandler!!.getAllImage()!!))
-
-            okbtn.setOnClickListener{
-                val tent = Intent(this,MainActivity::class.java)
-                startActivity(tent)
-                finish()
-            }
-
+            txt.setTextColor(Color.parseColor("#196F3D"))
         }catch (e:Exception){
-
+        txt.text="Désolé, vous n'avez aucun passe valide, merci de bien en demandé un "
+        txt.setTextColor(Color.parseColor("#9C0E16"))
         }
-
 
     }
 
