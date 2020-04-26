@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="2018-2019 MONETICS"
+                android:text="2010 monetics"
                 android:textColor="#aaa"
                 />
             <TextView
