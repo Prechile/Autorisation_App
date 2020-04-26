@@ -258,30 +258,6 @@
 
                 </androidx.gridlayout.widget.GridLayout>
 
-                <Button
-                    android:id="@+id/btn1"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="10sp"
-                    android:background="@drawable/btn_con1"
-                    android:text="Demande de passe"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#ffff"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn2"
-                    android:layout_below="@id/btn1"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:textColor="#ffff"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="votre passe"
-                    android:textStyle="bold"
-                    android:background="@drawable/btn_con"/>
-
 
             </LinearLayout>
         </RelativeLayout>

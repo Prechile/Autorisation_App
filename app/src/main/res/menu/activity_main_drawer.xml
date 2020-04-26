@@ -19,9 +19,13 @@
             android:icon="@drawable/ic_whatshot_black_24dp"
             android:title="Autorisation couvre feu" />
         <item
-            android:id="@+id/pass_ville"
-            android:icon="@drawable/ic_airport_shuttle_black_24dp"
-            android:title="Autorisation ville-ville" />
+        android:id="@+id/pass_ville"
+        android:icon="@drawable/ic_airport_shuttle_black_24dp"
+        android:title="Autorisation ville-ville" />
+        <item
+            android:id="@+id/passe"
+            android:icon="@drawable/ic_check_box_black_24dp"
+            android:title="Votre code d'autorisation" />
 
     </group>
 

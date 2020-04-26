@@ -25,18 +25,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
         //toolbar.inflateMenu(R.menu.main)
 
-        val btn1 = findViewById<Button>(R.id.btn1)
-        val btn2 = findViewById<Button>(R.id.btn2)
-
-        btn1.setOnClickListener{
-            val intent = Intent(this,Autorisation::class.java)
-            startActivity(intent)
-        }
-
-        btn2.setOnClickListener{
-            val intent = Intent(this,Operation::class.java)
-            startActivity(intent)
-        }
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -78,6 +66,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 val info = Intent(this,infoApp::class.java)
                 startActivity(info)
+            }
+
+            R.id.passe -> {
+
+                val code = Intent(this,Operation::class.java)
+                startActivity(code)
             }
 
             R.id.share -> {
